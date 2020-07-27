@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+		/>
+		<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="style.css" />
+		<title>MOTAY | Calorie tracker</title>
+	</head>
+	<body>
+		<nav>
+			<div class="nav-wrapper black">
+				<div class="container">
+					<a href="#" class="brand-logo center center-align"
+						><i class="material-icons">anchor</i>MOTAY</a
+					>
+					<ul class="right">
+						<li>
+							<a
+								href="#"
+								class="clear-btn waves-effect waves-light blue-grey darken-3 btn"
+								><i class="tiny material-icons inline-icon">clear_all</i>Clear
+								All</a
+							>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<br />
+
+		<div class="container main-container">
+			<h3><span class="date"></span></h3>
+			<div class="card">
+				<div class="card-content">
+					<span class="card-title">Add Meal</span>
+					<form class="col">
+						<div class="row">
+							<div class="input-field col s6">
+								<input type="text" placeholder="Add Item" id="item-name" />
+								<label for="item-name">Meal</label>
+							</div>
+							<div class="input-field col s6">
+								<input
+									type="text"
+									placeholder="Add Calories"
+									id="item-calories"
+								/>
+								<label for="item-calories">Calories</label>
+							</div>
+							<button
+								class="add-btn btn blue darken-3 waves-effect waves-light"
+							>
+								<i class="tiny material-icons inline-icon">add</i>Add Meal
+							</button>
+							<button class="update-btn btn orange waves-effect waves-light">
+								<i class="tiny material-icons inline-icon">create</i>Update Meal
+							</button>
+							<button class="delete-btn btn red waves-effect waves-light">
+								<i class="tiny material-icons inline-icon">close</i>Delete Meal
+							</button>
+							<button class="back-btn btn grey right waves-effect waves-light">
+								<i class="tiny material-icons inline-icon">chevron_left</i>Back
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<!-- calorie count -->
+			<h3 class="center-align">
+				Total Calories: <span class="total-calories">0</span>
+			</h3>
+
+			<!-- item list -->
+			<ul class="collection" id="item-list">
+				<!-- <li class="collection-item" id="item-0">
+					<strong>Salan Roti</strong> <em>1000 Calories</em>
+					<a href="#" class="secondary-content">
+						<i class="edit-item tiny material-icons">edit</i>
+					</a>
+				</li>
+				<li class="collection-item" id="item-1">
+					<strong>Fry Egg</strong> <em>200 Calories</em>
+					<a href="#" class="secondary-content">
+						<i class="edit-item tiny material-icons">edit</i>
+					</a>
+				</li>
+				<li class="collection-item" id="item-1">
+					<strong>Chips</strong> <em>150 Calories</em>
+					<a href="#" class="secondary-content">
+						<i class="edit-item tiny material-icons">edit</i>
+					</a>
+				</li> -->
+			</ul>
+		</div>
+
+		<script
+			src="https://code.jquery.com/jquery-3.5.1.min.js"
+			integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+			crossorigin="anonymous"
+		></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+		<script src="app.js"></script>
+	</body>
+</html>

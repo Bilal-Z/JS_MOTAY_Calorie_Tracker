@@ -1,0 +1,37 @@
+.inline-icon {
+	vertical-align: bottom !important;
+	display: inline !important;
+}
+
+.btn {
+	margin: 10px;
+}
+
+.alert {
+	animation: flashing 0.5s both;
+}
+
+.b-transition {
+	transition: background-color 0.5s ease;
+}
+
+@keyframes flashing {
+	0% {
+		background-color: black;
+	}
+	20% {
+		background-color: red;
+	}
+	40% {
+		background-color: black;
+	}
+	60% {
+		background-color: red;
+	}
+	80% {
+		background-color: black;
+	}
+	100% {
+		background-color: red;
+	}
+}
