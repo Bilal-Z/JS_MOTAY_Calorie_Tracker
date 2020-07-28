@@ -355,7 +355,6 @@ const UICtrl = (function () {
 			}
 		},
 		deleteListItem: function (id) {
-			console.log(`item-${id}`);
 			document.querySelector(`#item-${id}`).remove();
 		},
 		removeItems: function () {
