@@ -35,3 +35,12 @@
 		background-color: red;
 	}
 }
+
+.switch label .lever::after,
+.switch label input[type='checkbox']:checked + .lever::after {
+	background-color: #37474f;
+}
+.switch label .lever,
+.switch label input[type='checkbox']:checked + .lever {
+	background-color: white;
+}

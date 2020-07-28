@@ -56,6 +56,17 @@ const StorageCtrl = (function () {
 		clearItemsFromStorage: function () {
 			localStorage.removeItem('items');
 		},
+		storeGender: function (gender) {
+			localStorage.setItem('gender', gender);
+		},
+		getGenderFromStorage: function () {
+			const gender = localStorage.getItem('gender');
+			if (gender === null) {
+				gender = 'male';
+			}
+
+			return gender;
+		},
 	};
 })();
 
@@ -79,6 +90,7 @@ const ItemCtrl = (function () {
 		currentItem: null,
 		totalCalories: 0,
 		date: StorageCtrl.getDateFromStorage(),
+		gender: StorageCtrl.getGenderFromStorage(),
 	};
 
 	// public methods
@@ -171,6 +183,12 @@ const ItemCtrl = (function () {
 		clearAllItems: function () {
 			data.items = [];
 		},
+		setGender: function (gender) {
+			data.gender = gender;
+		},
+		getGender: function () {
+			return data.gender;
+		},
 	};
 })();
 
@@ -192,6 +210,8 @@ const UICtrl = (function () {
 		date: '.date',
 		cardTitle: '.card-title',
 		listItems: '.collection-item',
+		motay: '.motay',
+		genderPicker: '.gender-picker',
 	};
 
 	let editState = false;
@@ -272,6 +292,20 @@ const UICtrl = (function () {
 			document.querySelector(
 				UISelectors.totalCalories
 			).textContent = totalCalories;
+
+			let i;
+			if (totalCalories < 1200) {
+				i = 1;
+			} else {
+				i = parseInt((totalCalories - 1000) / 400) + 2;
+			}
+			if (ItemCtrl.getGender() === 'male') {
+				document.querySelector(UISelectors.motay).textContent =
+					'M' + 'O'.repeat(i) + 'T' + 'A'.repeat(i) + 'Y';
+			} else {
+				document.querySelector(UISelectors.motay).textContent =
+					'M' + 'O'.repeat(i) + 'T' + 'I'.repeat(i);
+			}
 		},
 		clearEditState: function () {
 			editState = false;
@@ -388,6 +422,11 @@ const App = (function (ItemCtrl, StorageCtrl, UICtrl) {
 		document
 			.querySelector(UISlectors.clearBtn)
 			.addEventListener('click', clearAllItemsClick);
+
+		// gender picker event
+		document
+			.querySelector(UISlectors.genderPicker)
+			.addEventListener('change', changeGenderSelection);
 	};
 
 	// add item submit
@@ -517,6 +556,22 @@ const App = (function (ItemCtrl, StorageCtrl, UICtrl) {
 		UICtrl.hideList();
 	};
 
+	const changeGenderSelection = function (e) {
+		if (e.target.checked) {
+			ItemCtrl.setGender('male');
+			StorageCtrl.storeGender('male');
+		} else {
+			ItemCtrl.setGender('female');
+			StorageCtrl.storeGender('female');
+		}
+		e.preventDefault();
+
+		// get total calories
+		const totalCalories = ItemCtrl.totalCalories();
+		// add total calories to ui
+		UICtrl.showTotalCalories(totalCalories);
+	};
+
 	return {
 		init: function () {
 			// clear edit state
@@ -541,6 +596,20 @@ const App = (function (ItemCtrl, StorageCtrl, UICtrl) {
 
 			// fetch fro data struct
 			const items = ItemCtrl.getItems();
+
+			if (StorageCtrl.getGenderFromStorage() === 'male') {
+				document.querySelector(UICtrl.getSelectors().motay).textContent =
+					'MOTAY';
+				document.querySelector(
+					UICtrl.getSelectors().genderPicker
+				).checked = true;
+			} else {
+				document.querySelector(UICtrl.getSelectors().motay).textContent =
+					'MOTI';
+				document.querySelector(
+					UICtrl.getSelectors().genderPicker
+				).checked = false;
+			}
 
 			// check if any items
 			if (items.length) {
